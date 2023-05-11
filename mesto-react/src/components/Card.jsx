@@ -1,4 +1,4 @@
-function Card(card) {
+function Card({card, onCardClick}) {
   return (
     <li>
       <figure className="places__place grow">
@@ -8,12 +8,13 @@ function Card(card) {
           className="places__place-photo"
           src={card.link}
           alt={card.name}
+          onClick={onCardClick}
         />
         <figcaption className="places__place-caption">
           <p className="places__place-name">{card.name}</p>
           <div className="places__like-container">
             <button className="places__like-button" type="button" aria-label="Нравится."></button>
-            <p className="places__like-count">{card.likes}</p>
+            <p className="places__like-count">{card.likes.length}</p>
           </div>
         </figcaption>
       </figure>

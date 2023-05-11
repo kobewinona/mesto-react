@@ -1,4 +1,4 @@
-import {apiConfig} from './constants';
+import {apiConfig} from './props';
 
 
 class Api {

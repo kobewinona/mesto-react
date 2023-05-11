@@ -63,10 +63,9 @@ function Main(props) {
           {initialCards.map((card) => {
             return <Card
               key={card._id}
-              name={card.name}
-              link={card.link}
-              likes={card.likes.length}
-              isOwner={card.owner._id === userID && true}/>;
+              card={card}
+              isOwner={card.owner._id === userID}
+              onCardClick={() => props.onCardClick(card)}/>
           })}
         </ul>
       </section>
