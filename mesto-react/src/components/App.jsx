@@ -6,7 +6,9 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
 
+
 function App() {
+  console.log('executed')
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -48,25 +50,6 @@ function App() {
         isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
       <PopupWithForm title="Уверены?" name="delete-place"/>
       <PopupWithImage/>
-      <template id="card">
-        <li>
-          <figure className="places__place grow">
-            <button className="places__trash-button" type="button" aria-label="Удалить."></button>
-            <img
-              className="places__place-photo"
-              src="#"
-              alt=""
-            />
-            <figcaption className="places__place-caption">
-              <p className="places__place-name"></p>
-              <div className="places__like-container">
-                <button className="places__like-button" type="button" aria-label="Нравится."></button>
-                <p className="places__like-count">0</p>
-              </div>
-            </figcaption>
-          </figure>
-        </li>
-      </template>
     </>
   );
 }
