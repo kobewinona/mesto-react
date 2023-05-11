@@ -1,0 +1,6 @@
+.places__like-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3px;
+  align-items: center;
+}

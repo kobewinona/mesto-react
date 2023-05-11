@@ -1,0 +1,20 @@
+.form__input {
+  width: calc(100% - (22px * 2));
+  max-width: 358px;
+  
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  
+  display: block;
+  position: relative;
+  
+  margin: 0 auto 5px auto;
+  padding: 0 0 9px 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.form__input:focus {
+  outline: none;
+}
