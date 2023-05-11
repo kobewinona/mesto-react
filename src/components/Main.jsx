@@ -1,33 +1,28 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import api from '../utils/Api';
 import Card from './Card';
 
-
 function Main(props) {
-  const [userAvatar, setUserAvatar] = React.useState('#');
-  const [isAvatarLoaded, setIsAvatarLoaded] = React.useState(false);
+  const [userAvatar, setUserAvatar] = useState('#');
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
   
-  const [userName, setUserName] = React.useState('');
-  const [userJob, setUserJob] = React.useState('');
-  const [userID, setUserID] = React.useState('');
+  const [userName, setUserName] = useState('');
+  const [userJob, setUserJob] = useState('');
   
-  const [initialCards, setInitialCards] = React.useState([]);
+  const [initialCards, setInitialCards] = useState([]);
   
-  
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([{avatar, name, about, _id}, initialCards]) => {
+      .then(([{avatar, name, about}, initialCards]) => {
         setUserAvatar(avatar);
         setIsAvatarLoaded(!isAvatarLoaded);
         
         setUserName(name);
         setUserJob(about);
-        setUserID(_id);
         
         setInitialCards(initialCards);
       }).catch(err => console.log(err));
   }, []);
-  
   
   return (
     <main className="content">
@@ -64,7 +59,6 @@ function Main(props) {
             return <Card
               key={card._id}
               card={card}
-              isOwner={card.owner._id === userID}
               onCardClick={() => props.onCardClick(card)}/>;
           })}
         </ul>

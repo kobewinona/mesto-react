@@ -2,7 +2,7 @@ function Card({card, onCardClick}) {
   return (
     <li>
       <figure className="places__place grow">
-        <button className={`places__trash-button ${card.isOwner && 'places__trash-button_active'}`}
+        <button className="places__trash-button"
                 type="button" aria-label="Удалить."></button>
         <img
           className="places__place-photo"

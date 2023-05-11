@@ -1,7 +1,7 @@
 function ImagePopup({card, isOpen, onClose}) {
   return (
     <section
-      className={`popup popup_type_place-preview ${isOpen && 'popup_opened'}`}
+      className={`popup popup_base_dark ${isOpen && 'popup_opened'}`}
       aria-label="Окно просмотра фотографии."
     >
       <div className={`popup__container popup__container_type_preview ${isOpen ? 'grow' : 'shrink'}`}>
@@ -14,7 +14,7 @@ function ImagePopup({card, isOpen, onClose}) {
         <figure className="popup__preview-element">
           <img
             className="popup__preview-photo"
-            src={card ? card.link : '#'}
+            src={card?.link}
             alt={card.name}
           />
           <figcaption>

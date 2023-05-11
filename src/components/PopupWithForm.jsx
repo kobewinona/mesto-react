@@ -1,6 +1,6 @@
 function PopupWithForm(props) {
   return (
-    <section className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`}>
+    <section className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}>
       <div className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}>
         <button
           className="popup__close-button"
@@ -20,13 +20,12 @@ function PopupWithForm(props) {
             required
           />
           <span className="profile-avatar-input-error form__input-error"></span>
-          <input
+          <button
             className="form__submit"
             aria-label="Сохранить."
             type="submit"
             name="submit"
-            value="Сохранить"
-          />
+          >{props.submitText}</button>
         </form>
       </div>
     </section>
