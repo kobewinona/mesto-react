@@ -1,4 +1,4 @@
-function PopupWithImage({card, isOpen, onClose}) {
+function ImagePopup({card, isOpen, onClose}) {
   return (
     <section
       className={`popup popup_type_place-preview ${isOpen && 'popup_opened'}`}
@@ -26,4 +26,4 @@ function PopupWithImage({card, isOpen, onClose}) {
   );
 }
 
-export default PopupWithImage;
+export default ImagePopup;
