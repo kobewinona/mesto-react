@@ -1,0 +1,14 @@
+@keyframes shrink {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: .5;
+  }
+}
+
+.shrink {
+  animation: shrink .2s ease-out forwards;
+}

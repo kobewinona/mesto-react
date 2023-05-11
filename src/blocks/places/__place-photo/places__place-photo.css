@@ -1,0 +1,19 @@
+.places__place-photo {
+  width: 100%;
+  min-width: 218px;
+  max-width: 564px;
+  aspect-ratio: 1 / 1;
+  
+  color: #fff;
+  
+  cursor: pointer;
+  
+  background-color: #000;
+  
+  object-fit: cover;
+  
+  display: block;
+  
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
