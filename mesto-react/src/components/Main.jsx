@@ -4,7 +4,7 @@ import Card from './Card';
 
 
 function Main(props) {
-  const [userAvatar, setUserAvatar] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('#');
   const [isAvatarLoaded, setIsAvatarLoaded] = React.useState(false);
   
   const [userName, setUserName] = React.useState('');

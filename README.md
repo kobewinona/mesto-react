@@ -1,194 +1,70 @@
-# Mesto-React
+# Getting Started with Create React App
 
-[![project](https://svgshare.com/i/pvA.svg "github profile")](https://kobewinona.github.io/mesto/)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-| [![github profile](https://svgshare.com/i/p5A.svg "github profile")](https://github.com/kobewinona) | &copy; dima klimkin |
-| :---: | :---: |
+## Available Scripts
 
-| html | css | js |vscode | git | bem |
-| :---: | :---: | :---: |:---: | :---: | :---: |
-| [![html](https://svgshare.com/i/p7U.svg)](https://www.w3.org/html/) | [![css](https://svgshare.com/i/p6o.svg)](https://www.w3schools.com/css/) | [![javascript](https://svgshare.com/i/pvW.svg)](https://www.javascript.com/) | [![vs code](https://svgshare.com/i/p5n.svg)](https://code.visualstudio.com/) | [![git](https://svgshare.com/i/p6d.svg)](https://git-scm.com/) | [![bem](https://svgshare.com/i/p6x.svg)](https://en.bem.info/) |
+In the project directory, you can run:
 
----
+### `npm start`
 
-## about this project
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-This project is the first one of mine using javascript.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-The webpage itself is about places in Russia. It allows to change profile name and job, upload new pictures of different places and git it a like ♡.
+### `npm test`
 
----
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## CSS syntax decoration I used in this project
+### `npm run build`
 
-To make the code more readable for me I decided to devide rules by their function:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```css
-.header__title {
-  width: 730px;
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-  font-size: 102px;
-  font-weight: 600;
-  line-height: 96px;
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-  position: relative;
-  margin: 0 0 0 64px;
+### `npm run eject`
 
-  z-index: 2;
-}
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### **1st** block of lines describes an object in generall:
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```css
-div {
-  width: 0;
-  min-height: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-```
->etc.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### **2nd** block of lines describes text and its decoration:
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-```css
-div {
-  color: #fff;
-  font-size: 14px;
-  font-weight: normal;
-  text-align: center;
-}
-```
->etc.
+## Learn More
 
-### **3rd** block of lines describes an object's content layout:
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```css
-div {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  column-gap: 0;
-}
-```
->etc.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### **4th** block of lines describes an object's position and size:
+### Code Splitting
 
-- *rules' order goes from the furthest* ❏ *to the closest* ■ *to content*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-- *rules with sides*  *go from top to the left* ↻
+### Analyzing the Bundle Size
 
-```css
-div {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  border: none;
-  padding: 0;
-}
-```
-![position](https://i.postimg.cc/HkN8sKfB/element.png)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### **5th** block of lines is just ```z-index``` ☺.
+### Making a Progressive Web App
 
-Inside those made-up blocks of lines I also try to maintain a certain order but sometimes I fail and it's not like anyone will ever see this anyway)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
----
+### Advanced Configuration
 
-## styling of this project
-*This is here just so I could add those cool bubbles with colors.*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-**font**
+### Deployment
 
-```css
-font-family: 'Inter', Tahoma, sans-serif;
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-**colors**
+### `npm run build` fails to minify
 
-| black (background) | white (text) |
-| :---: | :---: |
-| color: #000 | color: #fff |
-
----
-
-## difficulties during this project
-
-**1 problem**
-
-The profile name on mobile devices should be centered in width according to the design template and the edit button should be right next to it which was difficult to accomplish maintaining flexability between different resolutions.
-
-![template](https://i.postimg.cc/N040T6cC/2023-01-30-22-36-38.png)
-*so it is almost centered in width in the design template* ☺
-
-I chose to use ```grid``` for this element and in order for the first column to be centered I just set it to ```100%``` in width making the second column kind of overflow the presumed space for the grid wich I limited in ```max-width``` so it wouldn't go out of screen width:
-
-```css
-.profile__container {
-  max-width: calc(100% - 60px);
-
-  display: grid;
-  grid-template-columns: 100% 1fr;
-  gap: 8px 4px;
-  align-items: baseline;
-
-  flex-basis: 66%;
-
-  margin: 26px 0 0 0;
-}
-```
-
-![release](https://i.postimg.cc/fLRRvVWz/2023-01-30-22-40-45.png)
-*looks fine and does not break beetwen any resolutions*
-
-**solution**
-
->specifying ```font-size``` to 0 helps:
-```css
-.lead__image-container {
-  width: 100%;
-  font-size: 0;
-
-  position: relative;
-
-  margin: 40px auto 0 auto;
-}
-```
-
-**2 problem**
-
-I wanted to make a popup window to appear smoothly. I liked a way to do that using ```visibility``` property since this way an element still exists in the DOM and it's possible to tweek its behaviour with animations or transitions, but since the task for this project was using ```display``` property specifically I had to think of something, because once an element is not displayed you cannot work with it.
-
-**solution**
-
->I chose to set animations with a ```setTimeout``` method for closing popup window so it can play animations before disappearing from the DOM:
-
-```javascript
-function togglePopup() {
-  popup.classList.toggle('popup_opened');
-}
-
-function handlePopup(event) {
-  if (popup.classList.contains('popup_opened')) {
-    if (event.target === event.currentTarget) {
-      popup.style.animation = 'fadeOut ease-out .2s';
-      popupContainer.style.animation = 'scaleDown ease-out .2s';
-
-      setTimeout(togglePopup, 200);
-    }
-  } else {
-    popup.style.animation = 'fadeIn ease-in .2s';
-    popupContainer.style.animation = 'scaleUp ease-in .2s';
-
-    togglePopup();
-  }
-}
-```
-
----
-
-| thanks to yandex practicum team | [![yandex praktikum](https://svgshare.com/i/p77.svg)](https://practicum.yandex.ru/) | ♥ |
-| :---: | :---: | :---: |
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,70 +1,194 @@
-# Getting Started with Create React App
+# Mesto-React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![project](https://svgshare.com/i/pvA.svg "github profile")](https://kobewinona.github.io/mesto/)
 
-## Available Scripts
+| [![github profile](https://svgshare.com/i/p5A.svg "github profile")](https://github.com/kobewinona) | &copy; dima klimkin |
+| :---: | :---: |
 
-In the project directory, you can run:
+| html | css | js |vscode | git | bem |
+| :---: | :---: | :---: |:---: | :---: | :---: |
+| [![html](https://svgshare.com/i/p7U.svg)](https://www.w3.org/html/) | [![css](https://svgshare.com/i/p6o.svg)](https://www.w3schools.com/css/) | [![javascript](https://svgshare.com/i/pvW.svg)](https://www.javascript.com/) | [![vs code](https://svgshare.com/i/p5n.svg)](https://code.visualstudio.com/) | [![git](https://svgshare.com/i/p6d.svg)](https://git-scm.com/) | [![bem](https://svgshare.com/i/p6x.svg)](https://en.bem.info/) |
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## about this project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project is the first one of mine using javascript.
 
-### `npm test`
+The webpage itself is about places in Russia. It allows to change profile name and job, upload new pictures of different places and git it a like ♡.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## CSS syntax decoration I used in this project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To make the code more readable for me I decided to devide rules by their function:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```css
+.header__title {
+  width: 730px;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  font-size: 102px;
+  font-weight: 600;
+  line-height: 96px;
 
-### `npm run eject`
+  position: relative;
+  margin: 0 0 0 64px;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  z-index: 2;
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **1st** block of lines describes an object in generall:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```css
+div {
+  width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+```
+>etc.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **2nd** block of lines describes text and its decoration:
 
-## Learn More
+```css
+div {
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+}
+```
+>etc.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **3rd** block of lines describes an object's content layout:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```css
+div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  column-gap: 0;
+}
+```
+>etc.
 
-### Code Splitting
+### **4th** block of lines describes an object's position and size:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- *rules' order goes from the furthest* ❏ *to the closest* ■ *to content*
 
-### Analyzing the Bundle Size
+- *rules with sides*  *go from top to the left* ↻
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```css
+div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+```
+![position](https://i.postimg.cc/HkN8sKfB/element.png)
 
-### Making a Progressive Web App
+### **5th** block of lines is just ```z-index``` ☺.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Inside those made-up blocks of lines I also try to maintain a certain order but sometimes I fail and it's not like anyone will ever see this anyway)
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## styling of this project
+*This is here just so I could add those cool bubbles with colors.*
 
-### Deployment
+**font**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```css
+font-family: 'Inter', Tahoma, sans-serif;
+```
 
-### `npm run build` fails to minify
+**colors**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| black (background) | white (text) |
+| :---: | :---: |
+| color: #000 | color: #fff |
+
+---
+
+## difficulties during this project
+
+**1 problem**
+
+The profile name on mobile devices should be centered in width according to the design template and the edit button should be right next to it which was difficult to accomplish maintaining flexability between different resolutions.
+
+![template](https://i.postimg.cc/N040T6cC/2023-01-30-22-36-38.png)
+*so it is almost centered in width in the design template* ☺
+
+I chose to use ```grid``` for this element and in order for the first column to be centered I just set it to ```100%``` in width making the second column kind of overflow the presumed space for the grid wich I limited in ```max-width``` so it wouldn't go out of screen width:
+
+```css
+.profile__container {
+  max-width: calc(100% - 60px);
+
+  display: grid;
+  grid-template-columns: 100% 1fr;
+  gap: 8px 4px;
+  align-items: baseline;
+
+  flex-basis: 66%;
+
+  margin: 26px 0 0 0;
+}
+```
+
+![release](https://i.postimg.cc/fLRRvVWz/2023-01-30-22-40-45.png)
+*looks fine and does not break beetwen any resolutions*
+
+**solution**
+
+>specifying ```font-size``` to 0 helps:
+```css
+.lead__image-container {
+  width: 100%;
+  font-size: 0;
+
+  position: relative;
+
+  margin: 40px auto 0 auto;
+}
+```
+
+**2 problem**
+
+I wanted to make a popup window to appear smoothly. I liked a way to do that using ```visibility``` property since this way an element still exists in the DOM and it's possible to tweek its behaviour with animations or transitions, but since the task for this project was using ```display``` property specifically I had to think of something, because once an element is not displayed you cannot work with it.
+
+**solution**
+
+>I chose to set animations with a ```setTimeout``` method for closing popup window so it can play animations before disappearing from the DOM:
+
+```javascript
+function togglePopup() {
+  popup.classList.toggle('popup_opened');
+}
+
+function handlePopup(event) {
+  if (popup.classList.contains('popup_opened')) {
+    if (event.target === event.currentTarget) {
+      popup.style.animation = 'fadeOut ease-out .2s';
+      popupContainer.style.animation = 'scaleDown ease-out .2s';
+
+      setTimeout(togglePopup, 200);
+    }
+  } else {
+    popup.style.animation = 'fadeIn ease-in .2s';
+    popupContainer.style.animation = 'scaleUp ease-in .2s';
+
+    togglePopup();
+  }
+}
+```
+
+---
+
+| thanks to yandex practicum team | [![yandex praktikum](https://svgshare.com/i/p77.svg)](https://practicum.yandex.ru/) | ♥ |
+| :---: | :---: | :---: |
