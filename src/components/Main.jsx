@@ -3,8 +3,7 @@ import api from '../utils/Api';
 import Card from './Card';
 
 function Main(props) {
-  const [userAvatar, setUserAvatar] = useState('#');
-  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
+  const [userAvatar, setUserAvatar] = useState('');
   
   const [userName, setUserName] = useState('');
   const [userJob, setUserJob] = useState('');
@@ -15,7 +14,6 @@ function Main(props) {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([{avatar, name, about}, initialCards]) => {
         setUserAvatar(avatar);
-        setIsAvatarLoaded(!isAvatarLoaded);
         
         setUserName(name);
         setUserJob(about);
@@ -29,7 +27,7 @@ function Main(props) {
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            className={`profile__avatar ${isAvatarLoaded && 'profile__avatar_displayed'}`}
+            className={`profile__avatar ${userAvatar && 'profile__avatar_displayed'}`}
             src={userAvatar} alt="Аватар."/>
           <button
             className="profile__edit-avatar-button"
