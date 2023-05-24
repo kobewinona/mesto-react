@@ -25,7 +25,6 @@
 @import url('blocks/places/__list/places__list.css');
 @import url('blocks/places/__place/places__place.css');
 @import url('blocks/places/__trash-button/places__trash-button.css');
-@import url('blocks/places/__trash-button/_active/places__trash-button_active.css');
 @import url('blocks/places/__place-photo/places__place-photo.css');
 @import url('blocks/places/__place-caption/places__place-caption.css');
 @import url('blocks/places/__place-name/places__place-name.css');
