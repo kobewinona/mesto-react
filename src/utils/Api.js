@@ -78,18 +78,18 @@ class Api {
   
   // handle likes
   
-  putLike(cardID) {
-    return this._setRequest(`${this._url}/cards/${cardID}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-    }).then(res => this._returnRes(res));
-  }
-  
-  deleteLike(cardID) {
-    return this._setRequest(`${this._url}/cards/${cardID}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    }).then(res => this._returnRes(res));
+  changeLikeCardStatus(cardID, isLiked) {
+    if (!isLiked) {
+      return this._setRequest(`${this._url}/cards/${cardID}/likes`, {
+        method: 'PUT',
+        headers: this._headers
+      }).then(res => this._returnRes(res));
+    } else {
+      return this._setRequest(`${this._url}/cards/${cardID}/likes`, {
+        method: 'DELETE',
+        headers: this._headers
+      }).then(res => this._returnRes(res));
+    }
   }
 }
 

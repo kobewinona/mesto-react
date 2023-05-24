@@ -9,11 +9,11 @@ import Card from './Card';
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
   
-  const [initialCards, setInitialCards] = useState([]);
+  const [cards, setCards] = useState([]);
   
   useEffect(() => {
     api.getInitialCards()
-      .then(initialCards => setInitialCards(initialCards))
+      .then(cards => setCards(cards))
       .catch(err => console.log(err));
   }, []);
   
@@ -48,11 +48,14 @@ function Main(props) {
       </section>
       <section className="places" aria-label="Секция с фотографиями мест России.">
         <ul className="places__list">
-          {initialCards.map((card) => {
+          {cards.map((card) => {
             return <Card
               key={card._id}
               card={card}
-              onCardClick={() => props.onCardClick(card)}/>;
+              onCardClick={() => props.onCardClick(card)}
+              onCardLikeClick={() => props.onCardLikeClick(card, setCards)}
+              onCardDeleteClick={() => props.onCardDeleteClick(card, setCards)}
+            />;
           })}
         </ul>
       </section>
