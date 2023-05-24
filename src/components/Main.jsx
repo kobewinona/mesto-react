@@ -1,25 +1,20 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+
 import api from '../utils/Api';
+
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
+
 import Card from './Card';
 
 function Main(props) {
-  const [userAvatar, setUserAvatar] = useState('');
-  
-  const [userName, setUserName] = useState('');
-  const [userJob, setUserJob] = useState('');
+  const currentUser = useContext(CurrentUserContext);
   
   const [initialCards, setInitialCards] = useState([]);
   
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([{avatar, name, about}, initialCards]) => {
-        setUserAvatar(avatar);
-        
-        setUserName(name);
-        setUserJob(about);
-        
-        setInitialCards(initialCards);
-      }).catch(err => console.log(err));
+    api.getInitialCards()
+      .then(initialCards => setInitialCards(initialCards))
+      .catch(err => console.log(err));
   }, []);
   
   return (
@@ -27,22 +22,22 @@ function Main(props) {
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            className={`profile__avatar ${userAvatar && 'profile__avatar_displayed'}`}
-            src={userAvatar} alt="Аватар."/>
+            className={`profile__avatar ${currentUser.avatar && 'profile__avatar_displayed'}`}
+            src={currentUser.avatar} alt="Аватар."/>
           <button
             className="profile__edit-avatar-button"
             onClick={props.onEditAvatar}>
           </button>
         </div>
         <div className="profile__container">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__edit-profile-button"
             type="button"
             aria-label="Редактировать профиль."
             onClick={props.onEditProfile}>
           </button>
-          <p className="profile__job">{userJob}</p>
+          <p className="profile__job">{currentUser.about}</p>
         </div>
         <button
           className="profile__add-place-button"
