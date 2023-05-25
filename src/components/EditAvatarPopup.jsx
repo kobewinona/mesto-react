@@ -1,39 +1,19 @@
-import {useState, useEffect, useContext} from 'react';
-
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import {useRef} from 'react';
 
 import PopupWithForm from './PopupWithForm';
 
 
 function EditProfilePopup(props) {
-  const currentUser = useContext(CurrentUserContext);
-  
-  const [avatar, setAvatar] = useState('');
-  
-  
-  // handle change
-  
-  function handleAvatarChange(event) {
-    setAvatar(event.target.value);
-  }
+  const avatarInputRef = useRef();
   
   
   // handle submit
   
   function handleSubmit(event) {
     event.preventDefault();
-    
-    props.onUpdateAvatar({avatar});
+
+    props.onUpdateAvatar({avatar: avatarInputRef.current.value});
   }
-  
-  
-  // effects
-  
-  useEffect(() => {
-    setAvatar(currentUser.avatar)
-    setAvatar('')
-  }, [currentUser]);
-  
   
   return (
     <PopupWithForm
@@ -46,13 +26,12 @@ function EditProfilePopup(props) {
       ariaLabel="Сохранить."
     >
       <input
+        ref={avatarInputRef}
         id="profile-avatar-input"
         className="form__input form__input_type_profile-avatar"
         aria-label="Ссылка на изображение."
-        onChange={handleAvatarChange}
         type="url"
         name="userAvatar"
-        value={avatar || ''}
         placeholder="Ссылка на изображение"
         required
       />
