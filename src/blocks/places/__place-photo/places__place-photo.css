@@ -12,8 +12,16 @@
   
   object-fit: cover;
   
+  visibility: hidden;
+  
   display: block;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
   
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+

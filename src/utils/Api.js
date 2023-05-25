@@ -27,23 +27,23 @@ class Api {
     }).then(res => this._returnRes(res));
   }
   
-  patchUserAvatar({userAvatar}) {
+  patchUserAvatar({avatar}) {
     return this._setRequest(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        'avatar': userAvatar
+        'avatar': avatar
       })
     }).then(res => this._returnRes(res));
   }
   
-  patchUserInfo({userName, userJob}) {
+  patchUserInfo({name, about}) {
     return this._setRequest(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        'name': userName,
-        'about': userJob
+        'name': name,
+        'about': about
       })
     }).then(res => this._returnRes(res));
   }

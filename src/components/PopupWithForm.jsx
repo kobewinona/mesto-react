@@ -7,22 +7,13 @@ function PopupWithForm(props) {
           type="button"
           aria-label="Закрыть."
           onClick={props.onClose}
-        ></button>
+        />
         <h2 className="popup__title">{props.title}</h2>
-        <form className="form form_type_edit-avatar" name="edit-avatar" noValidate>
-          <input
-            id="profile-avatar-input"
-            className="form__input form__input_type_profile-avatar"
-            aria-label="Ссылка на изображение."
-            type="url"
-            name="userAvatar"
-            placeholder="Ссылка на изображение"
-            required
-          />
-          <span className="profile-avatar-input-error form__input-error"></span>
+        <form className="form" name={props.name} onSubmit={props.onSubmit} noValidate>
+          {props.children}
           <button
             className="form__submit"
-            aria-label="Сохранить."
+            aria-label={props.ariaLabel}
             type="submit"
             name="submit"
           >{props.submitText || 'Сохранить'}</button>

@@ -1,0 +1,12 @@
+.places__place-substrate {
+  width: 100%;
+  min-width: 218px;
+  max-width: 564px;
+  aspect-ratio: 1 / 1;
+  
+  cursor: pointer;
+  
+  background-color: #000;
+  
+  position: relative;
+}

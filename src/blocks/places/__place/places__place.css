@@ -1,7 +1,6 @@
 .places__place {
-  /*font-size: 0;*/
-  
   background-color: #fff;
+  background-clip: border-box;
   
   position: relative;
   

@@ -11,6 +11,12 @@ function Main(props) {
   
   const [cards, setCards] = useState([]);
   
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
+  
+  function handleAvatarLoad() {
+    setIsAvatarLoaded(true);
+  }
+  
   useEffect(() => {
     api.getInitialCards()
       .then(cards => setCards(cards))
@@ -22,8 +28,8 @@ function Main(props) {
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            className={`profile__avatar ${currentUser.avatar && 'profile__avatar_displayed'}`}
-            src={currentUser.avatar} alt="Аватар."/>
+            className={`profile__avatar ${isAvatarLoaded && 'profile__avatar_displayed'}`}
+            src={currentUser.avatar} alt="Аватар." onLoad={handleAvatarLoad}/>
           <button
             className="profile__edit-avatar-button"
             onClick={props.onEditAvatar}>
@@ -37,7 +43,7 @@ function Main(props) {
             aria-label="Редактировать профиль."
             onClick={props.onEditProfile}>
           </button>
-          <p className="profile__job">{currentUser.about}</p>
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button
           className="profile__add-place-button"
