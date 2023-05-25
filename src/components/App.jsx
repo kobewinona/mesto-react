@@ -1,7 +1,5 @@
 import {useState, useEffect} from 'react';
 
-import '../index.css';
-
 import api from '../utils/Api';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
