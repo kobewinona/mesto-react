@@ -57,13 +57,13 @@ class Api {
     }).then(res => this._returnRes(res));
   }
   
-  postCard({placeName, placeLink}) {
+  postCard({name, link}) {
     return this._setRequest(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        'name': placeName,
-        'link': placeLink
+        'name': name,
+        'link': link
       })
     }).then(res => this._returnRes(res));
   }

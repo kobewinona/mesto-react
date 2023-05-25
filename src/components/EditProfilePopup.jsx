@@ -44,11 +44,10 @@ function EditProfilePopup(props) {
     <PopupWithForm
       title="Редактировать профиль"
       name="edit-profile"
-      isOpen={props.isOpen}
       submitText={props.isLoading ? props.loadingText : 'Сохранить'}
       onSubmit={handleSubmit}
-      onClose={props.onClose}
       ariaLabel="Сохранить."
+      {...props}
     >
       <input
         id="profile-name-input"

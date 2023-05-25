@@ -13,17 +13,18 @@ function EditProfilePopup(props) {
     event.preventDefault();
 
     props.onUpdateAvatar({avatar: avatarInputRef.current.value});
+  
+    avatarInputRef.current.value = '';
   }
   
   return (
     <PopupWithForm
       title="Обновить аватар"
       name="edit-avatar"
-      isOpen={props.isOpen}
       submitText={props.isLoading ? props.loadingText : 'Сохранить'}
       onSubmit={handleSubmit}
-      onClose={props.onClose}
       ariaLabel="Сохранить."
+      {...props}
     >
       <input
         ref={avatarInputRef}

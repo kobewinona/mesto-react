@@ -1,4 +1,6 @@
-function PopupWithForm(props) {
+import React from 'react';
+
+const PopupWithForm = React.memo((props) => {
   return (
     <section className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}>
       <div className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}>
@@ -21,6 +23,6 @@ function PopupWithForm(props) {
       </div>
     </section>
   );
-}
+})
 
 export default PopupWithForm;

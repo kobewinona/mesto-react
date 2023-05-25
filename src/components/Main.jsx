@@ -1,6 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
-
-import api from '../utils/Api';
+import React, {useState, useContext} from 'react';
 
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
@@ -9,19 +7,11 @@ import Card from './Card';
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
   
-  const [cards, setCards] = useState([]);
-  
   const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
   
   function handleAvatarLoad() {
     setIsAvatarLoaded(true);
   }
-  
-  useEffect(() => {
-    api.getInitialCards()
-      .then(cards => setCards(cards))
-      .catch(err => console.log(err));
-  }, []);
   
   return (
     <main className="content">
@@ -54,13 +44,13 @@ function Main(props) {
       </section>
       <section className="places" aria-label="Секция с фотографиями мест России.">
         <ul className="places__list">
-          {cards.map((card) => {
+          {props.cards.map(card => {
             return <Card
               key={card._id}
               card={card}
               onCardClick={() => props.onCardClick(card)}
-              onCardLikeClick={() => props.onCardLikeClick(card, setCards)}
-              onCardDeleteClick={() => props.onCardDeleteClick(card, setCards)}
+              onCardLikeClick={() => props.onCardLikeClick(card)}
+              onCardDeleteClick={() => props.onCardDeleteClick(card)}
             />;
           })}
         </ul>
