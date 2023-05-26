@@ -1,27 +1,27 @@
-import {useState, useRef} from 'react';
+import {useState} from 'react';
 
 import PopupWithForm from './PopupWithForm';
 
 
 function AddPlacePopup(props) {
-  const [name, setName] = useState('');
-  const linkInputRef = useRef();
+  const [placeInfo, setPlaceInfo] = useState({name: '', link: ''});
   
-  function handleChange(event) {
-    setName(event.target.value);
+  function handlePlaceInfoChange(event) {
+    setPlaceInfo({...placeInfo,
+      [event.target.name]: event.target.value
+    });
   }
   
   
   function handleSubmit(event) {
     event.preventDefault();
-    
+
     props.onAddPlace({
-      name,
-      link: linkInputRef.current.value
+      name: placeInfo.name,
+      link: placeInfo.link
     })
-  
-    setName('')
-    linkInputRef.current.value = '';
+
+    setPlaceInfo({name: '', link: ''})
   }
   
   return (
@@ -37,10 +37,10 @@ function AddPlacePopup(props) {
         id="place-name-input"
         className="form__input form__input_type_place-name"
         aria-label="Название."
-        onChange={handleChange}
+        onChange={handlePlaceInfoChange}
         type="text"
-        name="placeName"
-        value={name}
+        name="name"
+        value={placeInfo.name || ''}
         placeholder="Название"
         minLength="2"
         maxLength="30"
@@ -48,12 +48,13 @@ function AddPlacePopup(props) {
       />
       <span className="place-name-input-error form__input-error"></span>
       <input
-        ref={linkInputRef}
         id="place-link-input"
         className="form__input form__input_type_place-link"
         aria-label="Ссылка на изображение."
+        onChange={handlePlaceInfoChange}
         type="url"
-        name="placeLink"
+        value={placeInfo.link || ''}
+        name="link"
         placeholder="Ссылка на изображение"
         required
       />
