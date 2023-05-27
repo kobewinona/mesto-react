@@ -2,32 +2,31 @@ import {useState, useEffect, useContext} from 'react';
 
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
-import PopupWithForm from './PopupWithForm';
+import FormWithValidation from './FormWithValidation';
+import InputWithValidation from './InputWithValidation';
 
 
 function EditProfilePopup(props) {
   const currentUser = useContext(CurrentUserContext);
   
-  const [profileInfo, setProfileInfo] = useState({name: '', about: ''});
+  const [inputValues, setInputValues] = useState({userName: '', userAbout: ''});
   
   
   // handle change
   
-  function handleProfileInfoChange(event) {
-    setProfileInfo({...profileInfo,
-      [event.target.name]: event.target.value
-    });
+  function handleValuesUpdate(name, value) {
+    setInputValues((prevValues) => ({
+      ...prevValues, [name]: value
+    }));
   }
   
   
   // handle submit
   
-  function handleSubmit(event) {
-    event.preventDefault();
-
+  function handleSubmit() {
     props.onUpdateUser({
-      name: profileInfo.name,
-      about: profileInfo.about
+      name: inputValues.userName,
+      about: inputValues.userAbout
     });
   }
   
@@ -35,15 +34,15 @@ function EditProfilePopup(props) {
   // effects
   
   useEffect(() => {
-    setProfileInfo({...profileInfo,
-      name: currentUser.name,
-      about: currentUser.about
+    setInputValues({...inputValues,
+      userName: currentUser.name,
+      userAbout: currentUser.about
     })
   }, [currentUser]);
   
   
   return (
-    <PopupWithForm
+    <FormWithValidation
       title="Редактировать профиль"
       name="edit-profile"
       submitText={props.isLoading ? props.loadingText : 'Сохранить'}
@@ -51,35 +50,33 @@ function EditProfilePopup(props) {
       ariaLabel="Сохранить."
       {...props}
     >
-      <input
-        id="profile-name-input"
-        className="form__input form__input_type_profile-name"
+      <InputWithValidation
+        className="form__input"
         aria-label="Имя."
-        onChange={handleProfileInfoChange}
+        isShown={props.isOpen}
+        defaultValue={currentUser.name}
+        onUpdate={handleValuesUpdate}
         type="text"
-        name="name"
-        value={profileInfo.name || ''}
+        name="userName"
         placeholder="Имя"
         minLength="2"
         maxLength="40"
         required
       />
-      <span className="profile-name-input-error form__input-error"></span>
-      <input
-        id="profile-about-input"
-        className="form__input form__input_type_profile-about"
+      <InputWithValidation
+        className="form__input"
         aria-label="Деятельность."
-        onChange={handleProfileInfoChange}
+        isShown={props.isOpen}
+        defaultValue={currentUser.about}
+        onUpdate={handleValuesUpdate}
         type="text"
-        name="about"
-        value={profileInfo.about || ''}
+        name="userAbout"
         placeholder="Описание"
         minLength="2"
         maxLength="200"
         required
       />
-      <span className="profile-about-input-error form__input-error"></span>
-    </PopupWithForm>
+    </FormWithValidation>
   );
 }
 

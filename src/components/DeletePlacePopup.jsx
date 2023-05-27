@@ -1,15 +1,13 @@
-import PopupWithForm from './PopupWithForm';
+import Form from './Form';
 
 
 function DeletePlacePopup(props) {
-  function handleSubmit(event) {
-    event.preventDefault();
-    
+  function handleSubmit() {
     props.onDeletePlace(props.cardToDelete)
   }
   
   return(
-    <PopupWithForm
+    <Form
       title="Уверены?"
       name="delete-place"
       isOpen={props.isOpen}

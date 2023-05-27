@@ -176,8 +176,6 @@ function App() {
       .catch(err => console.log(err));
   }
   
-  console.log(cards);
-  
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>

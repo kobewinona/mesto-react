@@ -1,6 +1,12 @@
-import React from 'react';
+function Form(props) {
+  function handleSubmit(event) {
+    event.preventDefault();
 
-const PopupWithForm = React.memo((props) => {
+    if (event.target.checkValidity()) {
+      props.onSubmit();
+    }
+  }
+  
   return (
     <section className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}>
       <div className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}>
@@ -11,7 +17,7 @@ const PopupWithForm = React.memo((props) => {
           onClick={props.onClose}
         />
         <h2 className="popup__title">{props.title}</h2>
-        <form className="form" name={props.name} onSubmit={props.onSubmit} noValidate>
+        <form className="form" onSubmit={handleSubmit} noValidate>
           {props.children}
           <button
             className="form__submit"
@@ -23,6 +29,6 @@ const PopupWithForm = React.memo((props) => {
       </div>
     </section>
   );
-})
+}
 
-export default PopupWithForm;
+export default Form;

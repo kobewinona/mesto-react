@@ -1,24 +1,34 @@
-import {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 
-import PopupWithForm from './PopupWithForm';
+import FormWithValidation from './FormWithValidation';
+import InputWithValidation from './InputWithValidation';
 
 
-function EditProfilePopup(props) {
+function EditAvatarPopup(props) {
   const avatarInputRef = useRef();
+  
+  const [inputValue, setInputValue] = useState({userAvatar: ''});
+  
+  
+  // handle change
+  
+  function handleValueUpdate(name, value) {
+    setInputValue((prevValues) => ({
+      ...prevValues, [name]: value
+    }));
+  }
   
   
   // handle submit
   
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    props.onUpdateAvatar({avatar: avatarInputRef.current.value});
+  function handleSubmit() {
+    props.onUpdateAvatar({avatar: inputValue.userAvatar});
   
     avatarInputRef.current.value = '';
   }
   
   return (
-    <PopupWithForm
+    <FormWithValidation
       title="Обновить аватар"
       name="edit-avatar"
       submitText={props.isLoading ? props.loadingText : 'Сохранить'}
@@ -26,19 +36,20 @@ function EditProfilePopup(props) {
       ariaLabel="Сохранить."
       {...props}
     >
-      <input
+      <InputWithValidation
         ref={avatarInputRef}
-        id="profile-avatar-input"
-        className="form__input form__input_type_profile-avatar"
+        className="form__input"
         aria-label="Ссылка на изображение."
+        isShown={props.isOpen}
         type="url"
+        onUpdate={handleValueUpdate}
         name="userAvatar"
         placeholder="Ссылка на изображение"
         required
       />
       <span className="profile-avatar-input-error form__input-error"></span>
-    </PopupWithForm>
+    </FormWithValidation>
   );
 }
 
-export default EditProfilePopup;
+export default EditAvatarPopup;

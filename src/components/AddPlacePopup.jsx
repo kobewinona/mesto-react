@@ -1,31 +1,28 @@
 import {useState} from 'react';
 
-import PopupWithForm from './PopupWithForm';
+import FormWithValidation from './FormWithValidation';
+import InputWithValidation from './InputWithValidation';
 
 
 function AddPlacePopup(props) {
-  const [placeInfo, setPlaceInfo] = useState({name: '', link: ''});
+  const [inputValues, setInputValues] = useState({placeName: '', placeLink: ''});
   
-  function handlePlaceInfoChange(event) {
-    setPlaceInfo({...placeInfo,
-      [event.target.name]: event.target.value
-    });
+  function handleValuesUpdate(name, value) {
+    setInputValues((prevValues) => ({
+      ...prevValues, [name]: value
+    }));
   }
   
   
-  function handleSubmit(event) {
-    event.preventDefault();
-
+  function handleSubmit() {
     props.onAddPlace({
-      name: placeInfo.name,
-      link: placeInfo.link
+      name: inputValues.placeName,
+      link: inputValues.placeLink
     })
-
-    setPlaceInfo({name: '', link: ''})
   }
   
   return (
-    <PopupWithForm
+    <FormWithValidation
       title="Новое место"
       name="add-place"
       submitText={props.isLoading ? props.loadingText : 'Создать'}
@@ -33,33 +30,32 @@ function AddPlacePopup(props) {
       ariaLabel="Создать."
       {...props}
     >
-      <input
-        id="place-name-input"
-        className="form__input form__input_type_place-name"
+      <InputWithValidation
+        className="form__input"
         aria-label="Название."
-        onChange={handlePlaceInfoChange}
+        isShown={props.isOpen}
+        onUpdate={handleValuesUpdate}
         type="text"
-        name="name"
-        value={placeInfo.name || ''}
+        name="placeName"
+        value={inputValues.name || ''}
         placeholder="Название"
         minLength="2"
         maxLength="30"
         required
       />
-      <span className="place-name-input-error form__input-error"></span>
-      <input
-        id="place-link-input"
+      <InputWithValidation
         className="form__input form__input_type_place-link"
         aria-label="Ссылка на изображение."
-        onChange={handlePlaceInfoChange}
+        isShown={props.isOpen}
+        onUpdate={handleValuesUpdate}
         type="url"
-        value={placeInfo.link || ''}
-        name="link"
+        name="placeLink"
+        value={inputValues.link || ''}
         placeholder="Ссылка на изображение"
         required
       />
       <span className="place-link-input-error form__input-error"></span>
-    </PopupWithForm>
+    </FormWithValidation>
   );
 }
 

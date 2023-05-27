@@ -57,12 +57,7 @@
 @import url('blocks/form/_type/form_type_add-place.css');
 @import url('blocks/form/_type/form_type_delete-place.css');
 @import url('blocks/form/__input/form__input.css');
-@import url('blocks/form/__input/_type/form__input_type_profile-avatar.css');
-@import url('blocks/form/__input/_type/form__input_type_profile-name.css');
-@import url('blocks/form/__input/_type/form__input_type_profile-about.css');
-@import url('blocks/form/__input/_type/form__input_type_place-name.css');
-@import url('blocks/form/__input/_type/form__input_type_place-link.css');
-@import url('blocks/form/__input/_type/form__input_type_error.css');
+@import url('blocks/form/__input/_error/form__input_error.css');
 @import url('blocks/form/__input-error/form__input-error.css');
 @import url('blocks/form/__submit/form__submit.css');
 @import url('blocks/form/__submit/_disabled/form__submit_disbled.css');
