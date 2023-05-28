@@ -27,7 +27,6 @@ const PopupWithForm = React.memo((props) => {
             name={props.name}
             onSubmit={props.onSubmit}
             noValidate
-            autoFocus
           >
             {props.isLoading
               ? <Spinner />
