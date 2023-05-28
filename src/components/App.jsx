@@ -22,7 +22,6 @@ function App() {
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
   const [isCardPreviewPopupOpen, setIsCardPreviewPopupOpen] = useState(false);
   
-  const [loadingText, setLoadingText] = useState('Сохранение');
   const [isLoading, setIsLoading] = useState(false);
   
   const [cards, setCards] = useState([]);
@@ -30,22 +29,15 @@ function App() {
   const [cardToDelete, setCardToDelete] = useState({});
   
   
-  // set initial current user info
+  // set initial current user info and initial cards
   
   useEffect(() => {
-    api.getUserInfo()
-      .then(res => setCurrentUser(res))
-      .catch(err => console.log(err));
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, initialCards]) => {
+        setCurrentUser(userData);
+        setCards(initialCards);
+      }).catch(err => console.log(err));
   }, [])
-  
-  
-  // set initial cards
-  
-  useEffect(() => {
-    api.getInitialCards()
-      .then(cards => setCards(cards))
-      .catch(err => console.log(err));
-  }, []);
   
   
   // handle popup
@@ -99,81 +91,66 @@ function App() {
   }
   
   
-  // render loading
-  
-  function renderLoading() {
-    const renderer = () => {
-      setLoadingText((l) => {
-        return l.slice(-3) !== '...' ? l + '.' : l.slice(0, -3);
-      });
-    };
-  
-    return setInterval(renderer, 200);
-  }
-  
-  function stopLoading(timerID) {
-    setLoadingText('Сохранение');
-    
-    clearInterval(timerID);
-  }
-  
-  
   // handle forms
   
   function handleUpdateAvatar(avatar) {
     setIsLoading(true);
-    const timerID = renderLoading();
     
     api.patchUserAvatar(avatar)
       .then(res => setCurrentUser(res))
       .then(() => {
         setIsLoading(false)
-        stopLoading(timerID)
         closeAllPopups()
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsLoading(false)
+        console.log(err);
+      });
   }
   
   function handleUpdateUser(newUserInfo) {
     setIsLoading(true);
-    const timerID = renderLoading();
     
     api.patchUserInfo(newUserInfo)
       .then(res => setCurrentUser(res))
       .then(() => {
         setIsLoading(false);
-        stopLoading(timerID);
         closeAllPopups()
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsLoading(false);
+        console.log(err);
+      });
   }
   
   function handleAddPlace(newCard) {
     setIsLoading(true);
-    const timerID = renderLoading();
     
     api.postCard(newCard)
       .then(card => setCards([card, ...cards]))
       .then(() => {
         setIsLoading(false);
-        stopLoading(timerID);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsLoading(false);
+        console.log(err);
+      });
   }
   
   function handleDeletePlace(card) {
     setIsLoading(true);
-    const timerID = renderLoading();
     
     api.deleteCard(card._id)
       .then(() => setCards(cards.filter(c => c._id !== card._id)))
       .then(() => {
         setIsLoading(false);
-        stopLoading(timerID);
         closeAllPopups();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsLoading(false);
+        console.log(err);
+      });
   }
   
   return (
@@ -194,21 +171,18 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
-          loadingText={loadingText}
           onClose={closeAllPopups}
         />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
-          loadingText={loadingText}
           onClose={closeAllPopups}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onAddPlace={handleAddPlace}
           isLoading={isLoading}
-          loadingText={loadingText}
           onClose={closeAllPopups}
         />
         <DeletePlacePopup
@@ -216,7 +190,6 @@ function App() {
           onDeletePlace={handleDeletePlace}
           cardToDelete={cardToDelete}
           isLoading={isLoading}
-          loadingText={loadingText}
           onClose={closeAllPopups}
         />
         <ImagePopup

@@ -9,7 +9,7 @@ import InputWithValidation from './InputWithValidation';
 function EditProfilePopup(props) {
   const currentUser = useContext(CurrentUserContext);
   
-  const [inputValues, setInputValues] = useState({userName: '', userAbout: ''});
+  const [inputValues, setInputValues] = useState({});
   
   
   // handle change
@@ -34,7 +34,7 @@ function EditProfilePopup(props) {
   // effects
   
   useEffect(() => {
-    setInputValues({...inputValues,
+    setInputValues({
       userName: currentUser.name,
       userAbout: currentUser.about
     })

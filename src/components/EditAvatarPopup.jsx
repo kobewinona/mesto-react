@@ -7,15 +7,13 @@ import InputWithValidation from './InputWithValidation';
 function EditAvatarPopup(props) {
   const avatarInputRef = useRef();
   
-  const [inputValue, setInputValue] = useState({userAvatar: ''});
+  const [inputValue, setInputValue] = useState({});
   
   
   // handle change
   
   function handleValueUpdate(name, value) {
-    setInputValue((prevValues) => ({
-      ...prevValues, [name]: value
-    }));
+    setInputValue({[name]: value});
   }
   
   

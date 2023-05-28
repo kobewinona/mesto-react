@@ -1,0 +1,17 @@
+.spinner__container {
+  height: 45px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin: 28px auto 0 auto;
+}
+
+@media (min-width: 520px) {
+  .spinner__container {
+    height: 50px;
+    
+    margin-top: 15px;
+  }
+}

@@ -5,6 +5,10 @@
 @import url('blocks/grow/grow.css');
 @import url('blocks/shrink/shrink.css');
 
+@import url('blocks/spinner/spinner.css');
+@import url('blocks/spinner/__container/spinner__container.css');
+@import url('blocks/spinner/__wheel/spinner__wheel.css');
+
 @import url('blocks/page/page.css');
 
 @import url('blocks/header/header.css');

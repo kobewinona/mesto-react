@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
+import Spinner from './Spinner';
 
 
 function FormWithValidation(props) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [inputsValidity, setInputsValidity] = useState({});
+  console.log('inputsValidity', inputsValidity);
   
   function handleSubmit(event) {
     event.preventDefault();
@@ -29,17 +31,19 @@ function FormWithValidation(props) {
   function validateForm() {
     const inputValues = Object.values(inputsValidity);
 
-    if (inputValues.length === 0) {
-      setIsFormValid(false);
-      return;
-    }
+    // if (inputValues.length === 0) {
+    //   setIsFormValid(false);
+    //   return;
+    // }
 
     setIsFormValid(inputValues.every((i) => i === true));
   }
 
   useEffect(() => {
     validateForm();
-  }, [inputsValidity, props.isOpen])
+  
+    // eslint-disable-next-line
+  }, [inputsValidity])
   
   useEffect(() => {
     setInputsValidity({});
@@ -57,13 +61,15 @@ function FormWithValidation(props) {
         <h2 className="popup__title">{props.title}</h2>
         <form className="form" name={props.name} onChange={handleChange} onSubmit={handleSubmit} noValidate>
           {props.children}
-          <button
-            className={`form__submit ${!isFormValid && 'form__submit_disabled'}`}
-            aria-label={props.ariaLabel}
-            type="submit"
-            name="submit"
-            disabled={!isFormValid}
-          >{props.submitText || 'Сохранить'}</button>
+          {props.isLoading
+            ? <Spinner />
+            : <button
+              className={`form__submit ${!isFormValid && 'form__submit_disabled'}`}
+              aria-label={props.ariaLabel}
+              type="submit"
+              name="submit"
+              disabled={!isFormValid}
+            >{props.submitText || 'Сохранить'}</button>}
         </form>
       </div>
     </section>
