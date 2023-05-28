@@ -172,18 +172,22 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
           onClose={closeAllPopups}
+          validate={true}
+          
         />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
           onClose={closeAllPopups}
+          validate={true}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onAddPlace={handleAddPlace}
           isLoading={isLoading}
           onClose={closeAllPopups}
+          validate={true}
         />
         <DeletePlacePopup
           isOpen={isDeletePlacePopupOpen}
@@ -191,6 +195,7 @@ function App() {
           cardToDelete={cardToDelete}
           isLoading={isLoading}
           onClose={closeAllPopups}
+          validate={false}
         />
         <ImagePopup
           card={selectedCard}

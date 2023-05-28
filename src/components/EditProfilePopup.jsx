@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
-import FormWithValidation from './FormWithValidation';
+import PopupWithForm from './PopupWithForm';
 import InputWithValidation from './InputWithValidation';
 
 
@@ -12,16 +12,11 @@ function EditProfilePopup(props) {
   const [inputValues, setInputValues] = useState({});
   
   
-  // handle change
-  
   function handleValuesUpdate(name, value) {
     setInputValues((prevValues) => ({
       ...prevValues, [name]: value
     }));
   }
-  
-  
-  // handle submit
   
   function handleSubmit() {
     props.onUpdateUser({
@@ -29,9 +24,6 @@ function EditProfilePopup(props) {
       about: inputValues.userAbout
     });
   }
-  
-  
-  // effects
   
   useEffect(() => {
     setInputValues({
@@ -42,41 +34,38 @@ function EditProfilePopup(props) {
   
   
   return (
-    <FormWithValidation
+    <PopupWithForm
       title="Редактировать профиль"
       name="edit-profile"
-      submitText={props.isLoading ? props.loadingText : 'Сохранить'}
+      submitText="Сохранить"
       onSubmit={handleSubmit}
-      ariaLabel="Сохранить."
       {...props}
     >
       <InputWithValidation
-        className="form__input"
-        aria-label="Имя."
         isShown={props.isOpen}
         defaultValue={currentUser.name}
         onUpdate={handleValuesUpdate}
-        type="text"
         name="userName"
+        type="text"
         placeholder="Имя"
+        aria-label="Имя."
         minLength="2"
         maxLength="40"
         required
       />
       <InputWithValidation
-        className="form__input"
-        aria-label="Деятельность."
         isShown={props.isOpen}
         defaultValue={currentUser.about}
         onUpdate={handleValuesUpdate}
-        type="text"
         name="userAbout"
+        type="text"
         placeholder="Описание"
+        aria-label="Деятельность."
         minLength="2"
         maxLength="200"
         required
       />
-    </FormWithValidation>
+    </PopupWithForm>
   );
 }
 

@@ -1,22 +1,12 @@
 import {useState, useEffect} from 'react';
+
 import Spinner from './Spinner';
 
 
 function FormWithValidation(props) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [inputsValidity, setInputsValidity] = useState({});
-  console.log('inputsValidity', inputsValidity);
   
-  function handleSubmit(event) {
-    event.preventDefault();
-    
-    if (event.target.checkValidity()) {
-      props.onSubmit();
-    }
-    
-    setIsFormValid(false);
-  }
-  //
   function handleChange(event) {
     const inputs = Array.from(event.currentTarget.elements);
     
@@ -31,12 +21,22 @@ function FormWithValidation(props) {
   function validateForm() {
     const inputValues = Object.values(inputsValidity);
 
-    // if (inputValues.length === 0) {
-    //   setIsFormValid(false);
-    //   return;
-    // }
+    if (inputValues.length === 0) {
+      setIsFormValid(false);
+      return;
+    }
 
     setIsFormValid(inputValues.every((i) => i === true));
+  }
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    if (event.target.checkValidity()) {
+      props.onSubmit();
+    }
+    
+    setIsFormValid(false);
   }
 
   useEffect(() => {
@@ -50,30 +50,24 @@ function FormWithValidation(props) {
   }, [props.isOpen])
   
   return (
-    <section className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}>
-      <div className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}>
-        <button
-          className="popup__close-button"
-          type="button"
-          aria-label="Закрыть."
-          onClick={props.onClose}
-        />
-        <h2 className="popup__title">{props.title}</h2>
-        <form className="form" name={props.name} onChange={handleChange} onSubmit={handleSubmit} noValidate>
-          {props.children}
-          {props.isLoading
-            ? <Spinner />
-            : <button
-              className={`form__submit ${!isFormValid && 'form__submit_disabled'}`}
-              aria-label={props.ariaLabel}
-              type="submit"
-              name="submit"
-              disabled={!isFormValid}
-            >{props.submitText || 'Сохранить'}</button>}
-        </form>
-      </div>
-    </section>
-  );
+    <form
+      className="form"
+      name={props.name}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+      noValidate
+    >
+      {props.children}
+      {props.isLoading
+        ? <Spinner />
+        : <button
+          className={`form__submit ${!isFormValid && 'form__submit_disabled'}`}
+          type="submit"
+          name="submit"
+          disabled={!isFormValid}
+        >{props.submitText || 'Сохранить'}</button>}
+    </form>
+  )
 }
 
 export default FormWithValidation;

@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 
-import FormWithValidation from './FormWithValidation';
+import PopupWithForm from './PopupWithForm';
 import InputWithValidation from './InputWithValidation';
 
 
@@ -9,15 +9,9 @@ function EditAvatarPopup(props) {
   
   const [inputValue, setInputValue] = useState({});
   
-  
-  // handle change
-  
   function handleValueUpdate(name, value) {
     setInputValue({[name]: value});
   }
-  
-  
-  // handle submit
   
   function handleSubmit() {
     props.onUpdateAvatar({avatar: inputValue.userAvatar});
@@ -26,27 +20,24 @@ function EditAvatarPopup(props) {
   }
   
   return (
-    <FormWithValidation
+    <PopupWithForm
       title="Обновить аватар"
       name="edit-avatar"
-      submitText={props.isLoading ? props.loadingText : 'Сохранить'}
+      submitText="Сохранить"
       onSubmit={handleSubmit}
-      ariaLabel="Сохранить."
       {...props}
     >
       <InputWithValidation
         ref={avatarInputRef}
-        className="form__input"
-        aria-label="Ссылка на изображение."
         isShown={props.isOpen}
-        type="url"
         onUpdate={handleValueUpdate}
         name="userAvatar"
+        type="url"
         placeholder="Ссылка на изображение"
+        aria-label="Ссылка на изображение."
         required
       />
-      <span className="profile-avatar-input-error form__input-error"></span>
-    </FormWithValidation>
+    </PopupWithForm>
   );
 }
 
