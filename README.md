@@ -1,10 +1,10 @@
-[![cover](src/images/readme/cover.png)](https://github.com/kobewinona/mesto)
+[![cover](src/images/readme/cover.png)](https://kobewinona.github.io/mesto-react)
 
 # Mesto (React)
 [![React](https://img.shields.io/npm/v/react?style=flat-square)](https://www.npmjs.com/package/react)
 
 [![Dima Klimkin Profile Page](https://img.shields.io/badge/Dima_Klimkin-f9f9f9?style=for-the-badge&logoColor=000&logo=github)](https://github.com/kobewinona)
-[![Mesto-React Gh-Pages Page](https://img.shields.io/badge/GitHub_Pages-Mesto_React-f9f9f9?style=for-the-badge&logo=githubpages)](https://github.com/kobewinona/mesto-react)
+[![Mesto-React Gh-Pages Page](https://img.shields.io/badge/GitHub_Pages-Mesto_React-f9f9f9?style=for-the-badge&logo=githubpages)](https://kobewinona.github.io/mesto-react/)
 
 [![HTML5](https://img.shields.io/badge/HTML5-f9f9f9?style=for-the-badge&logo=HTML5)](https://dev.w3.org/html5/spec-LC/)
 [![CSS3](https://img.shields.io/badge/CSS3-f9f9f9?logoColor=264BDC&style=for-the-badge&logo=CSS3)](https://www.w3.org/TR/CSS/#css)
