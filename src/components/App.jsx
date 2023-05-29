@@ -43,21 +43,21 @@ function App() {
   // handle popup
   
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+    setIsEditAvatarPopupOpen(true);
   }
   
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    setIsEditProfilePopupOpen(true);
   }
   
   function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+    setIsAddPlacePopupOpen(true);
   }
   
   function handleDeletePlaceClick(card) {
     setCardToDelete(card);
     
-    setIsDeletePlacePopupOpen(!isDeletePlacePopupOpen);
+    setIsDeletePlacePopupOpen(true);
   }
   
   function closeAllPopups() {

@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 
 export const useInitial = () => {
+  // eslint-disable-next-line
   const [status, setStatus] = useState({
     loading: false,
     error: false

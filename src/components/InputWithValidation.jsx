@@ -10,7 +10,7 @@ const InputWithValidation = React.forwardRef(({name, onUpdate, isShown, ...props
     setInputValue(props.defaultValue);
     setIsInputValid(true);
     setErrorMessage('');
-  }, [isShown]);
+  }, [props.defaultValue, isShown]);
   
   function handleInputsChange(event) {
     setInputValue(event.target.value);
