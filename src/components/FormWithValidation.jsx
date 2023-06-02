@@ -1,9 +1,9 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Spinner from './Spinner';
 
 
-function FormWithValidation(props) {
+const FormWithValidation = React.memo((props) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [inputsValidity, setInputsValidity] = useState({});
   
@@ -68,6 +68,6 @@ function FormWithValidation(props) {
         >{props.submitText || 'Сохранить'}</button>}
     </form>
   )
-}
+})
 
 export default FormWithValidation;

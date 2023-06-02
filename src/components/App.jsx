@@ -84,9 +84,7 @@ function App() {
     const isLiked = card.likes.some(like => like._id === currentUser._id);
   
     api.changeLikeCardStatus(card._id, isLiked)
-      .then(newCard => {
-        setCards(cards.map(c => c._id === card._id ? newCard : c));
-      })
+      .then(newCard => setCards(cards.map(c => c._id === card._id ? newCard : c)))
       .catch(err => console.log(err));
   }
   
@@ -98,14 +96,9 @@ function App() {
     
     api.patchUserAvatar(avatar)
       .then(res => setCurrentUser(res))
-      .then(() => {
-        setIsLoading(false)
-        closeAllPopups()
-      })
-      .catch(err => {
-        setIsLoading(false)
-        console.log(err);
-      });
+      .then(() => closeAllPopups())
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false));
   }
   
   function handleUpdateUser(newUserInfo) {
@@ -113,14 +106,9 @@ function App() {
     
     api.patchUserInfo(newUserInfo)
       .then(res => setCurrentUser(res))
-      .then(() => {
-        setIsLoading(false);
-        closeAllPopups()
-      })
-      .catch(err => {
-        setIsLoading(false);
-        console.log(err);
-      });
+      .then(() => closeAllPopups())
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false));
   }
   
   function handleAddPlace(newCard) {
@@ -128,14 +116,9 @@ function App() {
     
     api.postCard(newCard)
       .then(card => setCards([card, ...cards]))
-      .then(() => {
-        setIsLoading(false);
-        closeAllPopups();
-      })
-      .catch(err => {
-        setIsLoading(false);
-        console.log(err);
-      });
+      .then(() => closeAllPopups())
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false));
   }
   
   function handleDeletePlace(card) {
@@ -143,14 +126,9 @@ function App() {
     
     api.deleteCard(card._id)
       .then(() => setCards(cards.filter(c => c._id !== card._id)))
-      .then(() => {
-        setIsLoading(false);
-        closeAllPopups();
-      })
-      .catch(err => {
-        setIsLoading(false);
-        console.log(err);
-      });
+      .then(() => closeAllPopups())
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false));
   }
   
   return (
