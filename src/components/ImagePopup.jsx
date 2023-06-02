@@ -3,8 +3,12 @@ function ImagePopup({card, isOpen, onClose}) {
     <section
       className={`popup popup_base_dark ${isOpen && 'popup_opened'}`}
       aria-label="Окно просмотра фотографии."
+      onClick={onClose}
     >
-      <div className={`popup__container popup__container_type_preview ${isOpen ? 'grow' : 'shrink'}`}>
+      <div
+        className={`popup__container popup__container_type_preview ${isOpen ? 'grow' : 'shrink'}`}
+        onClick={event => event.stopPropagation()}
+      >
         <button
           className="popup__close-button"
           type="button"

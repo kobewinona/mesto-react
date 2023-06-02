@@ -12,8 +12,14 @@ const PopupWithForm = React.memo((props) => {
   }
   
   return (
-    <section className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}>
-      <div className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}>
+    <section
+      className={`popup popup_base_light ${props.isOpen && 'popup_opened'}`}
+      onClick={props.onClose}
+    >
+      <div
+        className={`popup__container popup__container_type_form ${props.isOpen ? 'grow' : 'shrink'}`}
+        onClick={event => event.stopPropagation()}
+      >
         <button
           className="popup__close-button" type="button" aria-label="Закрыть." onClick={props.onClose}
         />

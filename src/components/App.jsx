@@ -16,11 +16,13 @@ import ImagePopup from './ImagePopup';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
-  const [isCardPreviewPopupOpen, setIsCardPreviewPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState({
+    editAvatarPopup: false,
+    editProfilePopup: false,
+    addPlacePopup: false,
+    deletePlacePopup: false,
+    cardPreviewPopup: false
+  })
   
   const [isLoading, setIsLoading] = useState(false);
   
@@ -40,32 +42,57 @@ function App() {
   }, [])
   
   
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    
+    if (Object.values(isPopupOpen).some(p => p === true)) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isPopupOpen]);
+  
+  
   // handle popup
   
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
+    setIsPopupOpen({...isPopupOpen,
+      editAvatarPopup: true
+    });
   }
   
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(true);
+    setIsPopupOpen({...isPopupOpen,
+      editProfilePopup: true
+    });
   }
   
   function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(true);
+    setIsPopupOpen({...isPopupOpen,
+      addPlacePopup: true
+    });
   }
   
   function handleDeletePlaceClick(card) {
     setCardToDelete(card);
-    
-    setIsDeletePlacePopupOpen(true);
+  
+    setIsPopupOpen({...isPopupOpen,
+      deletePlacePopup: true
+    });
   }
   
   function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setIsDeletePlacePopupOpen(false);
-    setIsCardPreviewPopupOpen(false);
+    setIsPopupOpen({...isPopupOpen,
+      editAvatarPopup: false,
+      editProfilePopup: false,
+      addPlacePopup: false,
+      deletePlacePopup: false,
+      cardPreviewPopup: false
+    });
     
     const cleanUp = () => setSelectedCard({});
     setTimeout(cleanUp, 200);
@@ -75,7 +102,9 @@ function App() {
   // handle cards
   
   function handleCardClick(card) {
-    setIsCardPreviewPopupOpen(!isCardPreviewPopupOpen);
+    setIsPopupOpen({...isPopupOpen,
+      cardPreviewPopup: true
+    });
     
     setSelectedCard(card);
   }
@@ -146,7 +175,7 @@ function App() {
         />
         <Footer/>
         <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen}
+          isOpen={isPopupOpen.editAvatarPopup}
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
           onClose={closeAllPopups}
@@ -154,21 +183,21 @@ function App() {
           
         />
         <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
+          isOpen={isPopupOpen.editProfilePopup}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
           onClose={closeAllPopups}
           validate={true}
         />
         <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
+          isOpen={isPopupOpen.addPlacePopup}
           onAddPlace={handleAddPlace}
           isLoading={isLoading}
           onClose={closeAllPopups}
           validate={true}
         />
         <DeletePlacePopup
-          isOpen={isDeletePlacePopupOpen}
+          isOpen={isPopupOpen.deletePlacePopup}
           onDeletePlace={handleDeletePlace}
           cardToDelete={cardToDelete}
           isLoading={isLoading}
@@ -177,7 +206,7 @@ function App() {
         />
         <ImagePopup
           card={selectedCard}
-          isOpen={isCardPreviewPopupOpen}
+          isOpen={isPopupOpen.cardPreviewPopup}
           onClose={closeAllPopups}
         />
       </CurrentUserContext.Provider>
