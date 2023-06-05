@@ -3,7 +3,7 @@ import {useState, useContext} from 'react';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 
-function Card({card, onCardClick, onCardLikeClick, onCardDeleteClick}) {
+const Card = ({card, onCardClick, onCardLikeClick, onCardDeleteClick}) => {
   const currentUser = useContext(CurrentUserContext);
   
   const [isPlaceLoaded, setIsPlaceLoaded] = useState(false);
@@ -11,9 +11,9 @@ function Card({card, onCardClick, onCardLikeClick, onCardDeleteClick}) {
   const isOwner = currentUser._id === card.owner._id;
   const isLiked = card.likes.some(like => like._id === currentUser._id);
   
-  function handlePlaceLoad() {
+  const handlePlaceLoad = () => {
     setIsPlaceLoaded(true);
-  }
+  };
   
   return (
     <li>
@@ -44,6 +44,6 @@ function Card({card, onCardClick, onCardLikeClick, onCardDeleteClick}) {
       </figure>
     </li>
   );
-}
+};
 
 export default Card;

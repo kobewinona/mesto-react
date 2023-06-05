@@ -1,4 +1,4 @@
-function ImagePopup({card, isOpen, onClose}) {
+const ImagePopup = ({card, isOpen, onClose}) => {
   return (
     <section
       className={`popup popup_base_dark ${isOpen && 'popup_opened'}`}
@@ -28,6 +28,6 @@ function ImagePopup({card, isOpen, onClose}) {
       </div>
     </section>
   );
-}
+};
 
 export default ImagePopup;

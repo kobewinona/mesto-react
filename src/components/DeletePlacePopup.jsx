@@ -1,12 +1,14 @@
+import {memo, useCallback} from 'react';
+
 import PopupWithForm from './PopupWithForm';
 
 
-function DeletePlacePopup(props) {
-  function handleSubmit(event) {
+const DeletePlacePopup = memo(props => {
+  const handleSubmit = useCallback(event => {
     event.preventDefault();
     
     props.onDeletePlace(props.cardToDelete)
-  }
+  }, [props]);
   
   return(
     <PopupWithForm
@@ -17,6 +19,6 @@ function DeletePlacePopup(props) {
       {...props}
     />
   );
-}
+});
 
 export default DeletePlacePopup;

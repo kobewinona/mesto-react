@@ -1,11 +1,11 @@
-import React, {useState, useContext} from 'react';
+import {memo, useState, useContext} from 'react';
 
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
 
-function Main(props) {
+const Main = memo(props => {
   const currentUser = useContext(CurrentUserContext);
   
   const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
@@ -58,6 +58,6 @@ function Main(props) {
       </section>
     </main>
   );
-}
+});
 
 export default Main;

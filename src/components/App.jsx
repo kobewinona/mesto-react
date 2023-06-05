@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useCallback, useState, useEffect} from 'react';
 
 import api from '../utils/Api';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
@@ -13,7 +13,7 @@ import DeletePlacePopup from './DeletePlacePopup';
 import ImagePopup from './ImagePopup';
 
 
-function App() {
+const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   
   const [isPopupOpen, setIsPopupOpen] = useState({
@@ -22,7 +22,7 @@ function App() {
     addPlacePopup: false,
     deletePlacePopup: false,
     cardPreviewPopup: false
-  })
+  });
   
   const [isLoading, setIsLoading] = useState(false);
   
@@ -39,53 +39,41 @@ function App() {
         setCurrentUser(userData);
         setCards(initialCards);
       }).catch(err => console.log(err));
-  }, [])
+  }, []);
   
   
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        closeAllPopups();
-      }
-    }
-    
-    if (Object.values(isPopupOpen).some(p => p === true)) {
-      document.addEventListener('keydown', handleKeyDown);
-    }
-    
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isPopupOpen]);
+  // handle open popup
   
-  
-  // handle popup
-  
-  function handleEditAvatarClick() {
+  const handleEditAvatarClick = useCallback(() => {
     setIsPopupOpen({...isPopupOpen,
       editAvatarPopup: true
     });
-  }
+  }, [isPopupOpen]);
   
-  function handleEditProfileClick() {
+  const handleEditProfileClick = useCallback(() => {
     setIsPopupOpen({...isPopupOpen,
       editProfilePopup: true
     });
-  }
+  }, [isPopupOpen]);
   
-  function handleAddPlaceClick() {
+  const handleAddPlaceClick = useCallback(() => {
     setIsPopupOpen({...isPopupOpen,
       addPlacePopup: true
     });
-  }
+  }, [isPopupOpen]);
   
-  function handleDeletePlaceClick(card) {
+  const handleDeletePlaceClick = useCallback(card => {
     setCardToDelete(card);
   
     setIsPopupOpen({...isPopupOpen,
       deletePlacePopup: true
     });
-  }
+  }, [isPopupOpen]);
   
-  function closeAllPopups() {
+  
+  // handle close popup
+  
+  const closeAllPopups = () => {
     setIsPopupOpen({...isPopupOpen,
       editAvatarPopup: false,
       editProfilePopup: false,
@@ -96,31 +84,45 @@ function App() {
     
     const cleanUp = () => setSelectedCard({});
     setTimeout(cleanUp, 200);
-  }
+  };
+  
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeAllPopups();
+      }
+    };
+    
+    if (Object.values(isPopupOpen).some(p => p === true)) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  });
   
   
   // handle cards
   
-  function handleCardClick(card) {
+  const handleCardClick = useCallback(card => {
     setIsPopupOpen({...isPopupOpen,
       cardPreviewPopup: true
     });
     
     setSelectedCard(card);
-  }
+  }, [isPopupOpen]);
   
-  function handleCardLikeClick(card) {
+  const handleCardLikeClick = useCallback(card => {
     const isLiked = card.likes.some(like => like._id === currentUser._id);
   
     api.changeLikeCardStatus(card._id, isLiked)
       .then(newCard => setCards(cards.map(c => c._id === card._id ? newCard : c)))
       .catch(err => console.log(err));
-  }
+  }, [cards, currentUser._id]);
   
   
   // handle forms
   
-  function handleUpdateAvatar(avatar) {
+  const handleUpdateAvatar = avatar => {
     setIsLoading(true);
     
     api.patchUserAvatar(avatar)
@@ -128,9 +130,9 @@ function App() {
       .then(() => closeAllPopups())
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
-  }
+  };
   
-  function handleUpdateUser(newUserInfo) {
+  const handleUpdateUser = newUserInfo => {
     setIsLoading(true);
     
     api.patchUserInfo(newUserInfo)
@@ -138,9 +140,9 @@ function App() {
       .then(() => closeAllPopups())
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
-  }
+  };
   
-  function handleAddPlace(newCard) {
+  const handleAddPlace = newCard => {
     setIsLoading(true);
     
     api.postCard(newCard)
@@ -148,9 +150,9 @@ function App() {
       .then(() => closeAllPopups())
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
-  }
+  };
   
-  function handleDeletePlace(card) {
+  const handleDeletePlace = card => {
     setIsLoading(true);
     
     api.deleteCard(card._id)
@@ -158,7 +160,7 @@ function App() {
       .then(() => closeAllPopups())
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
-  }
+  };
   
   return (
     <>
@@ -212,6 +214,6 @@ function App() {
       </CurrentUserContext.Provider>
     </>
   );
-}
+};
 
 export default App;

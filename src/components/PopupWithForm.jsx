@@ -1,10 +1,10 @@
-import React, {useRef} from 'react';
+import {memo, useRef} from 'react';
 
 import FormWithValidation from './FormWithValidation';
 import Spinner from './Spinner';
 
 
-const PopupWithForm = React.memo((props) => {
+const PopupWithForm = memo(props => {
   const submitButtonRef = useRef();
 
   if (!props.validate && props.isOpen) {
@@ -49,6 +49,6 @@ const PopupWithForm = React.memo((props) => {
       </div>
     </section>
   );
-})
+});
 
 export default PopupWithForm;

@@ -1,23 +1,23 @@
-import React, {useRef, useState} from 'react';
+import {memo, useCallback, useRef, useState} from 'react';
 
 import PopupWithForm from './PopupWithForm';
 import InputWithValidation from './InputWithValidation';
 
 
-function EditAvatarPopup(props) {
+const EditAvatarPopup = memo(props => {
   const avatarInputRef = useRef();
   
   const [inputValue, setInputValue] = useState({});
   
-  function handleValueUpdate(name, value) {
+  const handleValueUpdate = useCallback((name, value) => {
     setInputValue({[name]: value});
-  }
+  }, []);
   
-  function handleSubmit() {
+  const handleSubmit = useCallback(() => {
     props.onUpdateAvatar({avatar: inputValue.userAvatar});
   
     avatarInputRef.current.value = '';
-  }
+  }, [props, inputValue.userAvatar]);
   
   return (
     <PopupWithForm
@@ -39,6 +39,6 @@ function EditAvatarPopup(props) {
       />
     </PopupWithForm>
   );
-}
+});
 
 export default EditAvatarPopup;
