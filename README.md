@@ -36,9 +36,9 @@ I learned a lot about working with frameworks, in particular the `React` framewo
 
 Additionally, I learned about `SPA` and its benefits and drawbacks. `SPA` (Single-Page Application) has the advantage of fast and responsive user experience, but it also has some drawbacks such as long initial load time, poor `SEO`, and limited browser caching. Now I better understand when and why to use `SSR` (Server-Side Rendering) and I am excited to start learning `Next.js` in my next project. `SSR` can improve initial load time, `SEO`, and browser caching. It also enables dynamic content and better accessibility. However, it may increase server response time and decrease client-side interactivity.
 
-The most difficult thing to comprehend for me was `HOC`. Couldn’t wrap my head around when and how to use it right since I haven’t tried it on practice yet. I definetely need to try it out in mext project with mesto project authorization.
+The most difficult thing to comprehend for me was `HOC`. Could not wrap my head around when and how to use it right since I haven’t tried it on practice yet. I definitely need to try it out in my next project with mesto project authorization.
 
-I learned a lot about re-renders and how to optimize page rendering and what tools can help to do that. Even though it only created more questions for me I want to figure out how to optimize every component so there is no nightmares of re-renders for every action on the website 😭.
+I learned a lot about re-renders and how to optimize page rendering and what tools can help to do that. Even though it only created more questions for me, I want to figure out how to optimize every component so there is no nightmares of re-renders for every action on the website 😭.
 
 ## how I used chat GPT doing this project
 
